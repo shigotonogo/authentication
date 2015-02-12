@@ -10,7 +10,8 @@ var passwordless = require('passwordless');
 
 var RedisStore = require('passwordless-redisstore-bcryptjs');
  
-var email   = require("emailjs");
+var email = require("emailjs");
+var url = require('url');
 
 var routes = require('./routes/index');
 var config = require('./config/app.config');
@@ -70,10 +71,11 @@ app.use(expressSession({
         httpOnly: true,
         secure: false, 
         maxAge: 1000 * 60 * 60 * 24 * 30, //one month
-        domain: 'facehub.com'
+        domain: url.parse(config.application).hostname
     },
     unset: 'destroy'
 }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Passwordless middleware
