@@ -7,6 +7,9 @@ var config = require('../config/app.config');
 
 /* GET home page. */
 router.get('/', function(req, res) {
+    if(req.param('uid') && !req.user){
+        req.user = req.param('uid');
+    }
     if (req.user) {
         res.cookie('uid', req.user, {
             httpOnly: true,
