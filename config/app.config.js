@@ -1,9 +1,10 @@
 module.exports = {
-    host : 'http://sso.facehub.com:3000/',
+    host        : 'http://authentication.facehub.net/',
+    callbackUrl : 'http://facehub.net/', // will redirect to this url after login
 
-    email : {
-        sender : 'smtp.facehub@gmail.com',
-        password : process.env.password,
-        smtp : 'smtp.gmail.com'
+    email       : {
+        sender      : 'smtp.facehub@gmail.com',
+        password    : process.env.password,
+        smtp        : 'smtp.gmail.com'
     } 
 };

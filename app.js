@@ -40,7 +40,7 @@ passwordless.addDelivery(
         smtpServer.send({
            text:    'Hello!\nYou can now access your account here: ' 
                 + host + '?token=' + tokenToSend + '&uid=' + encodeURIComponent(uidToSend), 
-           from:    yourEmail, 
+           from:    config.email.sender, 
            to:      recipient,
            subject: 'Token for ' + host
         }, function(err, message) { 

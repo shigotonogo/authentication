@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var passwordless = require('passwordless');
+var config = require('../config/app.config');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -11,11 +12,14 @@ router.get('/', function(req, res) {
             secure: false,
             maxAge: 1000 * 60 * 60 * 24 * 30, //one month
             domain: 'facehub.com'
-        })
+        });
+
+        res.redirect(config.callbackUrl);
+    }else{
+        res.render('index', {
+            user: req.user
+        });
     }
-    res.render('index', {
-        user: req.user
-    });
 });
 
 /* GET restricted site. */
