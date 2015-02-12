@@ -1,4 +1,5 @@
 var express = require('express');
+var url = require('url');
 var router = express.Router();
 
 var passwordless = require('passwordless');
@@ -11,10 +12,10 @@ router.get('/', function(req, res) {
             httpOnly: true,
             secure: false,
             maxAge: 1000 * 60 * 60 * 24 * 30, //one month
-            domain: 'facehub.com'
+            domain: url.parse(config.application).hostname
         });
 
-        res.redirect(config.callbackUrl);
+        res.redirect(config.application);
     }else{
         res.render('index', {
             user: req.user
@@ -41,7 +42,7 @@ router.get('/login', function(req, res) {
 router.get('/logout', passwordless.logout(),
     function(req, res) {
         res.clearCookie('uid');
-        res.redirect('/');
+        res.redirect(config.application);
     });
 
 /* POST login screen. */
