@@ -6,8 +6,8 @@ var emailConfig = {
 
 if (process.env.NODE_ENV === 'production') {
     module.exports = {
-        host        : 'http://authentication.facehub.net',
-        application : 'http://facehub.net/', // will redirect to this url after login
+        host        : 'http://authentication.facehub.rocks',
+        application : 'http://facehub.rocks/', // will redirect to this url after login
 
         email       : emailConfig
     };

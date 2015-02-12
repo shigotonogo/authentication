@@ -5,13 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var bodyParser = require('body-parser');
-
 var passwordless = require('passwordless');
-
 var RedisStore = require('passwordless-redisstore-bcryptjs');
- 
 var email = require("emailjs");
 var url = require('url');
+var fs = require('fs');
+var mustache = require('mustache');
 
 var routes = require('./routes/index');
 var config = require('./config/app.config');
@@ -38,12 +37,21 @@ passwordless.init(new RedisStore(6379, '127.0.0.1'));
 passwordless.addDelivery(
     function(tokenToSend, uidToSend, recipient, callback) {
         // Send out token
+        var emailTemplate = mustache.render(fs.readFileSync('./views/email.mustache.html','utf-8'), {
+            host : host,
+            token : tokenToSend,
+            uid : encodeURIComponent(uidToSend)
+        });
+
         smtpServer.send({
-           text:    'Hello!\nYou can now access your account here: ' 
+           text :    'Hello!\nYou can now access your account here: ' 
                 + host + '?token=' + tokenToSend + '&uid=' + encodeURIComponent(uidToSend), 
-           from:    config.email.sender, 
-           to:      recipient,
-           subject: 'Token for ' + host
+           from :    config.email.sender, 
+           to :      recipient,
+           subject : '欢迎加入Facehub',
+           attachment : [
+            {data: emailTemplate, alternative:true}
+           ]
         }, function(err, message) { 
             if(err) {
                 console.log(err);
@@ -98,6 +106,10 @@ app.use(function(err, req, res, next) {
         message: err.message,
         error: err
     });
+});
+
+process.on('uncaughtException', function(err) {
+    console.error('Caught exception: ', err);
 });
 
 app.set('port', process.env.PORT || 3000);
