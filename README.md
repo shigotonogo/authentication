@@ -15,6 +15,7 @@ the Login / Register API:
 ===========================
 1. `http://localhost:3000/sendtoken` in development env.
 2. `http://authentication.facehub.rocks/sendtoken` in production env.
+3. the data should contains a `user` field. You can POST the data by submit a `<form/>` or  use AJAX XMLHttpRequest.
 
 
 the logout API
