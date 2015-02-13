@@ -70,6 +70,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
+
+//make the login states persistent use redis
 var Redis = require('connect-redis')(expressSession);
 app.use(expressSession({
     store: new Redis(),

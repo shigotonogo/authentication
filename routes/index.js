@@ -58,17 +58,10 @@ router.post('/sendtoken',
         // Simply accept every user
         function(user, delivery, callback) {
             callback(null, user);
-            // usually you would want something like:
-            // User.find({email: user}, callback(ret) {
-            //      if(ret)
-            //          callback(null, ret.id)
-            //      else
-            //          callback(null, null)
-            // })
         }),
     function(req, res) {
         res.header('Access-Control-Allow-Origin', '*');
-        res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+        res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
         res.header('Access-Control-Allow-Headers', 'Content-Type');
         res.render('sent');
     });
