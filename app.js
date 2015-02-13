@@ -70,18 +70,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-
 var Redis = require('connect-redis')(expressSession);
 app.use(expressSession({
     store: new Redis(),
-    secret: 'keyboard cat',
-    cookie: {
-        httpOnly: true,
-        secure: false, 
-        maxAge: 1000 * 60 * 60 * 24 * 30, //one month
-        domain: url.parse(config.application).hostname
-    },
-    unset: 'destroy'
+    secret: config.email.password
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
