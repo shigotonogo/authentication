@@ -11,8 +11,10 @@ router.get('/', function(req, res) {
         res.cookie('uid', req.user, {
             httpOnly: true,
             secure: false,
-            maxAge: 1000 * 60 * 60 * 24 * 30, //one month
-            domain: url.parse(config.application).hostname
+            maxAge: 1000 * 60 * 60 * 24 * 30 //one month
+
+            // this will result in a bug that chrome browser can't set the cookie when redirect
+            // ,domain: url.parse(config.application).hostname 
         });
 
         res.redirect(config.application);
