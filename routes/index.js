@@ -45,7 +45,7 @@ router.get('/login', function(req, res) {
 router.get('/logout', passwordless.logout(),
     function(req, res) {
         res.clearCookie('uid');
-        res.redirect(config.application + 'join');
+        res.redirect(config.application + 'login');
     });
 
 /* POST login screen. */
