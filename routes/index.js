@@ -8,14 +8,19 @@ var config = require('../config/app.config');
 /* GET home page. */
 router.get('/', function(req, res) {
     if (req.user) {
-        res.cookie('uid', req.user, {
+        var cookieOptions = {
             httpOnly: true,
             secure: false,
             maxAge: 1000 * 60 * 60 * 24 * 30 //one month
+        };
 
-            // this will result in a bug that chrome browser can't set the cookie when redirect
-            // ,domain: url.parse(config.application).hostname 
-        });
+        //in local development environment, we should not set the cookie domain to localhost(chrome browser has issue with this).
+        if(process.env.NODE_ENV === 'production'){
+            //we want set cookie to the root domain so we can have a simple sso solution.
+            cookieOptions.domain = url.parse(config.application).hostname;
+        }
+
+        res.cookie('uid', req.user, cookieOptions);
 
         res.redirect(config.application);
     }else{
