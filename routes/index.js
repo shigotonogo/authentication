@@ -9,7 +9,7 @@ var config = require('../config/app.config');
 router.get('/', function(req, res) {
     if (req.user) {
         res.cookie('uid', req.user, {
-            httpOnly: false,//temperate false for show case
+            httpOnly: true,
             secure: false,
             maxAge: 1000 * 60 * 60 * 24 * 30 //one month
 
