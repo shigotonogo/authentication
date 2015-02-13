@@ -14,10 +14,10 @@ howto run this app?
 the Login / Register action 
 ===========================
 1. `http://localhost:3000/sendtoken` in development env.
-2. `http://authentication.facehub.net/sendtoken` in production env.
+2. `http://authentication.facehub.rocks/sendtoken` in production env.
 
 
 the logout action
 ======================
 1. `http://localhost:3000/logout` in development env.
-2. `http://authentication.facehub.net/logout` in production env.
+2. `http://authentication.facehub.rocks/logout` in production env.
