@@ -1,5 +1,5 @@
 {
-  "name": "passwordless-simple-mail",
+  "name": "authenticationByPasswordless",
   "private": "true",
   "version": "0.0.1",
   "scripts": {
