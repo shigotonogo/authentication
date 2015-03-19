@@ -15,11 +15,6 @@ var mustache = require('mustache');
 var routes = require('./routes/index');
 var config = require('./config/app.config');
 
-if(!config.email.password){
-    console.error('please config the password for smtp server');
-    process.exit(1);
-}
-
 var app = express();
 
 var smtpServer  = email.server.connect({

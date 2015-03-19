@@ -1,6 +1,16 @@
+var fs = require('fs');
+var path = require('path');
+
+var passwordFile = path.resolve(__dirname, '.smtp-password.txt');
+
+if(!fs.existsSync(passwordFile)){
+    console.error('Please set the password of smtp server in file: authentication/config/app.config.js !');
+    process.exit(1);
+}
+
 var emailConfig = {
     sender      : 'smtp.facehub@gmail.com',
-    password    : process.env.password,
+    password    : fs.readFileSync(passwordFile,'utf-8'),
     smtp        : 'smtp.gmail.com'
 };
 
