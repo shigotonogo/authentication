@@ -4,11 +4,11 @@ howto run this app?
 1. start redis server
 2. run `npm install`
 
-3. run the application(please change the __password__ for smtp server)
+3. run the application(please set the __password__ of smtp server in config/.smtp-password.txt)
     1. in __development__ mode
-    `password=foobar node app.js` 
+    `node app.js` 
     2. in __production__ mode
-    `password=foobar NODE_ENV=production node app.js` 
+    `NODE_ENV=production node app.js` 
 
 
 the Login / Register API: 
