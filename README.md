@@ -6,9 +6,9 @@ howto run this app?
 
 3. run the application(please set the __password__ of smtp server in config/.smtp-password.txt)
     1. in __development__ mode
-    `node app.js` 
+    `sh start-dev.sh` 
     2. in __production__ mode
-    `NODE_ENV=production node app.js` 
+    `sh start-production.sh` 
 
 
 the Login / Register API: 
