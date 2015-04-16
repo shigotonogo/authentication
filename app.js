@@ -17,12 +17,18 @@ var config = require('./config/app.config');
 
 var app = express();
 
-var smtpServer  = email.server.connect({
-   user:    config.email.sender, 
-   password: config.email.password, 
-   host:    config.email.smtp, 
-   ssl:     true
-});
+var emailConfig = {
+   host:     process.env.SMTP_SERVER || config.email.smtp, 
+   port:     process.env.SMTP_PORT,
+   ssl:      process.env.NODE_ENV === 'production'
+};
+
+if(process.env.NODE_ENV === 'production'){
+    emailConfig.user = config.email.sender;
+    emailConfig.password = config.email.password;
+}
+
+var smtpServer  = email.server.connect(emailConfig);
 
 //Path to be send via email
 var host = config.host;
@@ -104,5 +110,5 @@ process.on('uncaughtException', function(err) {
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + server.address().port);
+  console.log('please visit http://127.0.0.1:' + server.address().port);
 });

@@ -23,8 +23,8 @@ if (process.env.NODE_ENV === 'production') {
     };
 }else{
     module.exports = {
-        host        : 'http://localhost:3000',
-        application : 'http://localhost:8080',
+        host        : 'http://127.0.0.1:3000',
+        application : 'http://127.0.0.1:8080',
 
         email       : emailConfig
     };
