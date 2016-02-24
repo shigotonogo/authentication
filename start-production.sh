@@ -1,3 +1,3 @@
 npm install
 
-NODE_ENV=production  node app.js
+REDIS_HOST=redis NODE_ENV=production  node app.js

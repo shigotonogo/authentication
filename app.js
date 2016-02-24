@@ -23,6 +23,8 @@ var emailConfig = {
    ssl:      process.env.NODE_ENV === 'production'
 };
 
+var redisHost = process.env.REDIS_HOST || '127.0.0.1'
+
 if(process.env.NODE_ENV === 'production'){
     emailConfig.user = config.email.sender;
     emailConfig.password = config.email.password;
@@ -34,7 +36,7 @@ var smtpServer  = email.server.connect(emailConfig);
 var host = config.host;
 
 // Setup of Passwordless
-passwordless.init(new RedisStore(6379, '127.0.0.1'));
+passwordless.init(new RedisStore(6379, redisHost));
 passwordless.addDelivery(
     function(tokenToSend, uidToSend, recipient, callback) {
         // Send out token
