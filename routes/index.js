@@ -45,6 +45,10 @@ router.get('/login', function(req, res) {
     });
 });
 
+router.get('/verified', function(req, res){
+    res.send({status:"OK"})
+});
+
 /* GET logout. */
 router.get('/logout', passwordless.logout(),
     function(req, res) {

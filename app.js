@@ -85,7 +85,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Passwordless middleware
 app.use(passwordless.sessionSupport());
-app.use(passwordless.acceptToken({ successRedirect: '/' }));
+app.use(passwordless.acceptToken({ successRedirect: '/verified'}));
 
 app.use('/', routes);
 
