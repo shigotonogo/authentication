@@ -33,7 +33,7 @@ if(process.env.NODE_ENV === 'production'){
 var smtpServer  = email.server.connect(emailConfig);
 
 //Path to be send via email
-var host = config.host;
+var host = config.verify;
 
 // Setup of Passwordless
 passwordless.init(new RedisStore(6379, redisHost));

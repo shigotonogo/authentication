@@ -16,13 +16,13 @@ var emailConfig = {
 
 if (process.env.NODE_ENV === 'production') {
     module.exports = {
-        host        : 'http://authentication.facehub.net',
+        verify      : 'http://facehub.net/verify',
         application : 'http://facehub.net/', // will redirect to this url after login
         email       : emailConfig
     };
 }else{
     module.exports = {
-        host        : 'http://127.0.0.1:3000',
+        verify      : 'http://127.0.0.1:8080/verify',
         application : 'http://127.0.0.1:8080',
         email       : emailConfig
     };
